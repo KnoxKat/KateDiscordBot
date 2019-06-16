@@ -47,7 +47,7 @@ client.on('message', async message => {
     }
 
     if(message.content.startsWith(`${prefix}kiss`)){
-        message.channel.mathRandom.send(`https://pa1.narvii.com/6380/bef5f29916ba06f161e12e62c6c7fe49a2d619c5_hq.gif`)
+        message.channel.send(`https://pa1.narvii.com/6380/bef5f29916ba06f161e12e62c6c7fe49a2d619c5_hq.gif`)
         message.channel.send(`https://data.whicdn.com/images/300070619/original.gif`)
     }
 
