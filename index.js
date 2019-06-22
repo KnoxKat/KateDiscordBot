@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const client = new Discord.Client();
-let embed = new Discord.RichEmbed() 
+let embed = new Discord.RichEmbed()
+const math = require("math-random"); 
 
 client.once('ready', () => {
   console.log('The bot is ready and fired up for use!!')
@@ -11,7 +12,7 @@ client.on('ready', () => {
   client.user.setStatus('available')
   client.user.setPresence({
       game: {
-          name: 'Lesbian Love Simulator 2300',
+          name: 'with Amie!',
           type: "PLAYING",
           url: "https://www.twitter.com/MutedOreo"
       }
@@ -44,7 +45,7 @@ client.on('message', async message => {
     }
 
     if(message.content.startsWith(`${prefix}hug`)){
-        message.channel.send(`You're hugging with **` + message.content.replace(`${[prefix]}hug`, '').trim() + `**`);
+        message.channel.send(`You're now hugging **` + message.content.replace(`${[prefix]}hug`, '').trim() + `**`);
     }
 
     if(message.content.startsWith(`${prefix}pet`)){
@@ -81,6 +82,14 @@ client.on('message', async message => {
     if(message.content.startsWith(`${prefix}sub`)){
         message.channel.send('Have fun on this subreddit!  https://www.reddit.com/r/' + message.content.replace(`${[prefix]}sub`, '').trim());
         }
+
+    if(message.content.startsWith(`${prefix}urban`)){
+      message.channel.send(`Here is your Urban Dictionary search result! https://www.urbandictionary.com/define.php?term=` + message.content.replace(`${prefix}urban`, '').trim());
+    }
+
+    if(message.content.startsWith(`${prefix}avatar`)){
+      message.channel.send(message.author.avatarURL);
+    }
 
     //help dm command
       if (message.content.startsWith(`${prefix}help`)){
@@ -175,6 +184,39 @@ client.on('message', async message => {
           }
         });
     }
+
+    //other
+
+    if (message.content.startsWith(`${prefix}other`)){
+      client.users.get(`${message.author.id}`).send({embed: {
+          color: 15105570,
+          author: {
+            name: client.user.username,
+            icon_url: client.user.avatarURL
+          },
+          title: "These are the commands you can use!",
+          description: "The bot works in DMs. Use `k.help` in DM for help.",
+          fields: [{
+              name: "`k.say [text]",
+              value: "This lets the bot say something you requested"
+            },
+            {
+              name: "`k.hidesay`",
+              value: "This lets the bot say something you requested, but anonymously. "
+            },
+            {
+              name: "`k.sub`",
+              value: "The bot will give you link to provided sub reddit.."
+            }
+          ],
+          timestamp: new Date(),
+          footer: {
+            icon_url: message.author.avatarURL,
+            text: "Requested by " +message.author.username
+          }
+        }
+      });
+  }
 
 })
 
