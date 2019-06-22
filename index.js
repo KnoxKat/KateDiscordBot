@@ -3,6 +3,7 @@ const { prefix, token } = require('./config.json');
 const client = new Discord.Client();
 let embed = new Discord.RichEmbed()
 const math = require("math-random"); 
+const fs = require("fs");
 
 client.once('ready', () => {
   console.log('The bot is ready and fired up for use!!')
@@ -29,8 +30,16 @@ client.on('message', async message => {
     }
 
     if(message.content.startsWith(`${prefix}kiss`)){
-        message.channel.send(`https://pa1.narvii.com/6380/bef5f29916ba06f161e12e62c6c7fe49a2d619c5_hq.gif`)
-        message.channel.send(`https://data.whicdn.com/images/300070619/original.gif`)
+    let file = JSON.parse(fs.readFileSync("./kiss.json", "utf8"));
+    let random = Math.round(math() * Object.keys(file).length);
+    let image = file[random];
+
+    let embed = new Discord.RichEmbed()
+        .setTitle(`${message.author.username} kisses ${message.mentions.users.first().username}`)
+        .setImage(image)
+        .setFooter(`Requested by: ${message.author.tag}`)
+        console.log(random)
+    message.channel.send(embed);
     }
 
     if(message.content.startsWith(`${prefix}loveme`)){
@@ -41,15 +50,42 @@ client.on('message', async message => {
     //fun
     
     if(message.content.startsWith(`${prefix}slap`)){
-        message.channel.send(`You slapped **` + message.content.replace(`${[prefix]}slap`, '').trim() + `**`);
+      let file = JSON.parse(fs.readFileSync("./slap.json", "utf8"));
+      let random = Math.round(math() * Object.keys(file).length);
+      let image = file[random];
+  
+      let embed = new Discord.RichEmbed()
+          .setTitle(`${message.author.username} slaps ${message.mentions.users.first().username}`)
+          .setImage(image)
+          .setFooter(`Requested by: ${message.author.tag}`)
+          console.log(random)
+      message.channel.send(embed);
     }
 
     if(message.content.startsWith(`${prefix}hug`)){
-        message.channel.send(`You're now hugging **` + message.content.replace(`${[prefix]}hug`, '').trim() + `**`);
+      let file = JSON.parse(fs.readFileSync("./hug.json", "utf8"));
+      let random = Math.round(math() * Object.keys(file).length);
+      let image = file[random];
+  
+      let embed = new Discord.RichEmbed()
+          .setTitle(`${message.author.username} hugs ${message.mentions.users.first().username}`)
+          .setImage(image)
+          .setFooter(`Requested by: ${message.author.tag}`)
+          console.log(random)
+      message.channel.send(embed);
     }
 
-    if(message.content.startsWith(`${prefix}pet`)){
-        message.channel.send(`You're petting **` + message.content.replace(`${[prefix]}pet`, '').trim() + `**`);
+    if(message.content.startsWith(`${prefix}pat`)){
+      let file = JSON.parse(fs.readFileSync("./pat.json", "utf8"));
+      let random = Math.round(math() * Object.keys(file).length);
+      let image = file[random];
+  
+      let embed = new Discord.RichEmbed()
+          .setTitle(`${message.author.username} is patting ${message.mentions.users.first().username}`)
+          .setImage(image)
+          .setFooter(`Requested by: ${message.author.tag}`)
+          console.log(random)
+      message.channel.send(embed);
     }
 
     //other
@@ -89,6 +125,19 @@ client.on('message', async message => {
 
     if(message.content.startsWith(`${prefix}avatar`)){
       message.channel.send(message.author.avatarURL);
+    }
+
+    if(message.content.startsWith(`${prefix}cheer`)){
+      let file = JSON.parse(fs.readFileSync("./cheer.json", "utf8"));
+      let random = Math.round(math() * Object.keys(file).length);
+      let image = file[random];
+  
+      let embed = new Discord.RichEmbed()
+          .setTitle(`${message.author.username} is cheering for ${message.mentions.users.first().username}`)
+          .setImage(image)
+          .setFooter(`Requested by: ${message.author.tag}`)
+          console.log(random)
+      message.channel.send(embed);
     }
 
     //help dm command
