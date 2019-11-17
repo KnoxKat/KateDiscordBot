@@ -1,4 +1,4 @@
-# Dawn Discord Bot
+# Kate Discord Bot
 This is a discord bot, the bot is called Kate and it's been made on request to showcase more lesbian love on LGBT discord servers. 
 Please keep in mind this is just the source code used & the `node_modules`* has not been uploaded onto here. 
 
